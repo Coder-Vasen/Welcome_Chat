@@ -32,7 +32,7 @@
 
 <div class="flex-container">
     <div class="container" style="position: relative; min-height: 100vh">
-        <h1>Welcome to chat</h1>
+        <h1>Welcome {data.user.username}!</h1>
         <div class="container">
             <ul>
                 {#each messages as message}
@@ -51,8 +51,8 @@
         <form action="" method="post" class="message-form" use:enhance={({data}) => {
             data = {...data, }
         }}>
-            <input type="text" name="message" placeholder="Type your message here!" style="max-width: 65%;" bind:value={messageInput}>
-            <button type="button" style="max-width: 30%;" on:click={() => {
+            <input type="text" name="message" placeholder="Type your message here!" style="max-width: 65%; margin-right: 20px; margin-bottom: 0;" bind:value={messageInput}>
+            <button type="button" style="max-width: 30%; margin: 0;" on:click={() => {
                 io.emit("message", {
                     from: data.user.username,
                     message: messageInput,
@@ -60,7 +60,7 @@
                 })
                 sendMessageButton.click()
             }}>Send</button>
-            <button type="submit" style="visibility: hidden;" bind:this={sendMessageButton}>Submit</button>
+            <button type="submit" style="visibility: hidden; width: 0; height: 0;" bind:this={sendMessageButton}>Submit</button>
         </form>
     </div>
 </div>
@@ -79,6 +79,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
+        margin-bottom: 2rem;
     }
 
     ul li{
